@@ -27,7 +27,7 @@ local joker = {
   end,
 
   calculate = function(self, card, context)
-    if context.cardarea == G.jokers and context.joker_main then
+    if context.joker_main then
       local val = card.ability.extra.mult + math.floor(card.ability.extra.coeff * math.cos(math.pi/card.ability.extra.dilation * G.GAME.dollars or 0) + 0.5)
         return {
           message = localize{type='variable',key='a_mult',vars={val}},
