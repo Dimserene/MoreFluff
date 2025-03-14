@@ -5,8 +5,8 @@
 --- MOD_AUTHOR: [notmario]
 --- MOD_DESCRIPTION: Back, despite popular demand
 --- BADGE_COLOR: 814BA8
---- DEPENDENCIES: [Talisman>=2.0.0-beta8, Steamodded>=1.0.0~ALPHA-0909a]
---- VERSION: 1.0.3-ja
+--- DEPENDENCIES: [Talisman>=2.1.1~dev, Steamodded>=1.0.0~BETA-0312b]
+--- VERSION: 1.1.0
 
 local current_mod = SMODS.current_mod
 local mod_path = SMODS.current_mod.path
@@ -127,8 +127,12 @@ function has(table, elem)
   return false
 end
 
+-- I don't think these are needed anymore since Talisman is a dependency but idk lol -- Jevonn
 local to_big = to_big or function(num)
   return num
+end
+local to_number = to_number or function(jevonn_was_here)
+  return jevonn_was_here
 end
 
 for _, v in ipairs(joker_list) do
