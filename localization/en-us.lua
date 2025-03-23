@@ -372,6 +372,23 @@ return {
           "blind is selected"
         },
       },
+      j_mf_marigold = {
+        name = "Marigold",
+        text = {
+          "{C:attention}Retriggers{} played and held",
+          "{C:attention}Marigold Cards{} #1# time#<s>1#"
+        },
+      },
+      j_mf_yuckyrat = { 
+        name = "Yucky Rat",
+        text = {
+          "Played {C:attention}unenhanced{} cards",
+          "are converted to {C:attention}Yucky Cards{}.",
+          "Gains {X:red,C:white} X#1# {} Mult for",
+          "each card converted",
+          "{C:inactive}(Currently {X:red,C:white} X#2# {C:inactive} Mult)"
+        },
+      },
       -- ORTALAB SWAPS
       j_mf_clintcondition = {
         name = "Clint Condition",
@@ -519,9 +536,9 @@ return {
       c_mf_green = {
         name = "Green",
         text = {
-          "Create a {C:green}D6 Tag{} for",
-          "every {C:attention}#4#{} rounds",
-          "this has been held",
+          "Create a {C:dark_edition}Negative{}",
+          "{C:green}Oops! All 6s{} for every {C:attention}#4#{}",
+          "rounds this has been held",
           "{C:inactive}(Currently {C:attention}#1#{C:inactive}, {}[{C:attention}#2#{C:inactive}#3#{}]{C:inactive})"
         },
       },
@@ -547,7 +564,7 @@ return {
         name = "Pink",
         text = {
           "Add {C:attention}1{} round to a random",
-          "{C:colourcard}Colour{} card for every",
+          "{C:colourcard}Colour{} card. Triggers once for",
           "{C:attention}#4#{} rounds this has been held",
           "{C:inactive}(Currently {C:attention}#1#{C:inactive}, {}[{C:attention}#2#{C:inactive}#3#{}]{C:inactive})"
         },
@@ -777,7 +794,7 @@ return {
         name = "Yucky Card",
 				text = {
 					"{C:green}#1# in #2#{} chance to",
-					"give {C:attention}$#3#{} and {C:red}destroy{}",
+					"be {C:red}destroyed{}",
 					"after being scored",
 				},
       },
