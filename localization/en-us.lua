@@ -397,6 +397,24 @@ return {
           "contains exactly {C:attention}4{} cards"
         },
       },
+      j_mf_brass = {
+        name = "Brass Joker",
+        text = {
+          "{C:attention}Retrigger{} the joker",
+          "to the right once for every",
+          "{C:attention}#4# Brass Cards{} destroyed",
+          "{C:inactive}(Currently {C:attention}#1#{C:inactive}, {}[{C:attention}#2#{C:inactive}#3#{}]{C:inactive})"
+        }
+      },
+      j_mf_allicantdo = {
+        name = "All I Can't Do",
+        text = {
+          "{C:red}Debuffs{} first drawn hand",
+          "Gains {X:red,C:white} X#1# {} Mult for",
+          "each played {C:red}debuffed{} card",
+          "{C:inactive}(Currently {X:red,C:white} X#2# {C:inactive})"
+        }
+      },
       -- ORTALAB SWAPS
       j_mf_clintcondition = {
         name = "Clint Condition",
@@ -1139,6 +1157,7 @@ return {
       mf_config_rotarot_cards = "45 Degree Rotated Tarot Cards",
       mf_config_achievements = "Achievements",
       mf_config_unfinished = "Unfinished Content",
+      mf_config_huger_joker = "Huger Joker",
     },
     labels = {
       colour = "Colour"
