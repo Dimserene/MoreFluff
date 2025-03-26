@@ -415,6 +415,24 @@ return {
           "{C:inactive}(Currently {X:red,C:white} X#2# {C:inactive})"
         }
       },
+      j_mf_tealjoker = {
+        name = "Teal Joker",
+        text = {
+          "Gives {X:chips,C:white} X#1# {} Chips",
+          "for each {C:attention}Teal Card",
+          "in your {C:attention}full deck",
+          "{C:inactive}(Currently {X:chips,C:white} X#2# {C:inactive} Chips)",
+        }
+      },
+      j_mf_gemstonejoker = {
+        name = "Gemstone Joker",
+        text = {
+          "Earn {C:money}$#1#{} at end of round",
+          "for each {C:attention}Gemstone Card{}",
+          "in your {C:attention}full deck{}",
+          "{C:inactive}(Currently {C:money}$#2#{C:inactive})"
+        }
+      },
       -- ORTALAB SWAPS
       j_mf_clintcondition = {
         name = "Clint Condition",
