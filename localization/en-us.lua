@@ -2,7 +2,7 @@
 -- language, they will still be called "Colour" cards.
 -- ha ha ha.
 
-return {
+local loc_stuff = {
   descriptions = {
     Joker = {
       j_mf_badlegaldefence = {
@@ -465,6 +465,12 @@ return {
           "{C:attention}played hand{} if scored hand contains",
           "a {C:attention}Stone Card{} and {C:attention}Steel Card{}",
         }
+      },
+      j_mf_talljoker = {
+        name = "Tall Joker",
+        text = {
+          "{C:mult,s:1.1}+#1#{} Mult",
+        },
       },
       -- ORTALAB SWAPS
       j_mf_clintcondition = {
@@ -1295,3 +1301,12 @@ return {
     },
   }
 }
+
+-- Jen Salmanac
+
+if Jen then
+  local triangle_desc = loc_stuff["descriptions"]["Joker"]["j_mf_triangle"]["text"]
+  triangle_desc[#triangle_desc + 1] = "{C:caption,s:0.7,E:1}#2#"
+end
+
+return loc_stuff
