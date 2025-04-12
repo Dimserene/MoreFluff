@@ -480,6 +480,35 @@ local loc_stuff = {
           "{C:attention}Boss Blind{} is selected"
         },
       },
+      j_mf_selfinsert = {
+        name = "Self Insert",
+        text = {
+          "effect customisable in settings..."
+        }
+      },
+      j_mf_missingjoker = {
+        name = "Missing Texture",
+        text = {
+          "Transforms into a",
+          "{C:dark_edition}random joker{} for",
+          "the duration of the blind",
+          "when blind is selected"
+        }
+      },
+      j_mf_rot_cartomancer = {
+        name = "Cartomancer!",
+        text = {
+          "Create a {C:rotarot}45 Degree Rotated Tarot{} card",
+          "when {C:attention}Blind{} is selected",
+          "{C:inactive}(Must have room)"
+        },
+      },
+      j_mf_widejoker = {
+        name = "Wide Joker",
+        text = {
+          "{X:dark_edition,C:white}^#1#{} Mult",
+        },
+      },
       -- ORTALAB SWAPS
       j_mf_clintcondition = {
         name = "Clint Condition",
@@ -522,6 +551,20 @@ local loc_stuff = {
         text = {
           "{X:mult,C:white} X#1# {} Mult"
         }
+      },
+
+      -- and very last
+      j_mf_shattered_prism = {
+        name = "The {C:edition}Fractured{} {C:colourcard}Prism",
+        text = {
+          "Played cards each give {X:jen_RGB,C:white,s:1.5} ^^#1# {} Mult",
+          "when scored if played hand is",
+          "a {C:attention}Three of a Kind",
+          "{C:attention}Retriggers{} all scored cards once",
+          "for every held {C:colourcard}Colour Card{}",
+          "{C:caption,s:0.7,E:1}THIS IS THE ONLY WAY IT COULD HAVE ENDED",
+          "{C:caption,s:0.7,E:1}THIS IS THE ONLY WAY IT SHOULD HAVE ENDED",
+        },
       },
     },
     Colour = {
@@ -1450,6 +1493,8 @@ local loc_stuff = {
       cc_mf_first_card_trigger = { "when the first card is scored" },
       cc_mf_face_card_trigger = { "when a face card is scored" },
       cc_mf_endofround = { "at end of round" },
+      cc_mf_cardsold = { "when a card is sold" },
+      cc_mf_shoproll = { "when shop is rerolled" },
 
       cc_mf_handtype = { "if hand contains a #3#" },
       cc_mf_odds = { "if a #4# in #3# chance passes" },
@@ -1459,6 +1504,7 @@ local loc_stuff = {
       b_colour_cards = "Colour Cards",
       k_colour_pack = "Colour Pack",
       k_plus_colour = "+1 Colour",
+      k_plus_rotarot = "+1 45 Degree Rotated Tarot Card",
       b_take = "TAKE",
       k_death_caps = "DEATH",
       k_effect_added_ex = "Effect added!",
@@ -1499,6 +1545,8 @@ local loc_stuff = {
       mf_config_achievements = "Achievements",
       mf_config_unfinished = "Unfinished Content",
       mf_config_huger_joker = "Huger Joker",
+      
+      mf_config_maj = "My Awesome Joker",
     },
     labels = {
       colour = "Colour"

@@ -6,7 +6,7 @@
 --- MOD_DESCRIPTION: Back, despite popular demand
 --- BADGE_COLOR: 814BA8
 --- DEPENDENCIES: [Talisman>=2.0.0, Steamodded>=1.0.0~BETA-0312b]
---- VERSION: 1.2.3
+--- VERSION: 1.3.1
 
 local current_mod = SMODS.current_mod
 local mod_path = SMODS.current_mod.path
@@ -143,26 +143,28 @@ local joker_list = {
   -- legendary!!
   "triangle",
 
-  -- epic?????
-  -- "fleshpanopticon", -- IT'S IN CRYPTID NOW
-
-  -- exotic?!?!
-  "colorem",
-
   -- 1.3
-  "flintandsteel",
   "junkmail",
+  "flintandsteel",
   "gemstonejoker",
+  "missingjoker",
+  "rot_cartomancer",
+  -- "selfinsert", -- cut this one for now
   "stonejokerjoker",
+  "talljoker",
   "tealjoker",
   "yuckyrat",
   "allicantdo",
   "brass",
   "complexitycreep",
   "hyperjimbo",
-  "talljoker",
   "top10",
-  -- "marigold", -- later?
+  "widejoker",
+  "marigold",
+
+  -- busted shit
+  "colorem",
+  "shattered_prism",
 }
 
 if not mf_config["Jokers"] then
@@ -196,6 +198,12 @@ for _, v in ipairs(joker_list) do
   joker.atlas = "mf_jokers"
   if v == "hyperjimbo" then
     joker.atlas = "mf_hyperjimbo"
+  end
+  if v == "rot_cartomancer" then
+    joker.atlas = "mf_rot_cartomancer"
+  end
+  if v == "shattered_prism" then
+    joker.atlas = "almanactriangle"
   end
   if not joker.pos then
     joker.pos = { x = 0, y = 0 }
@@ -339,6 +347,13 @@ SMODS.Atlas({
   py = 95 
 })
 SMODS.Atlas({ 
+  key = "mf_rot_cartomancer", 
+  atlas_table = "ASSET_ATLAS", 
+  path = "mf_rot_cartomancer.png", 
+  px = 112, 
+  py = 112
+})
+SMODS.Atlas({ 
   key = "mf_colours", 
   atlas_table = "ASSET_ATLAS", 
   path = "mf_colours.png", 
@@ -408,6 +423,15 @@ SMODS.Atlas({
   px = 34,
   py = 34
 })
+if Jen then
+  SMODS.Atlas({ 
+    key = "almanactriangle", 
+    atlas_table = "ASSET_ATLAS", 
+    path = "almanactriangle.png", 
+    px = 71, 
+    py = 95 
+  })
+end
 
 -- add a way for these to be disabled
 if mf_config["Colour Cards"] then
@@ -783,30 +807,6 @@ end
 
 -- cryptid pool additions
 if Cryptid then
-  -- check if we are running against an older version of cryptid
-  if Cryptid.food then
-    local food_jokers = {
-      "j_mf_lollipop",
-      "j_mf_goldencarrot",
-      "j_mf_teacup",
-    }
-    for i = 1, #food_jokers do
-      Cryptid.food[#Cryptid.food+1] = food_jokers[i]
-    end
-  end
-  if Cryptid.memepack then
-    local meme_jokers = {
-      "j_mf_basepaulcard", -- Paul
-      "j_mf_blasphemy", -- it can instakill you that's funny right
-      "j_mf_cba", -- Chess Battle Advanced
-      "j_mf_hugejoker", -- it's huge
-      "j_mf_jankman", -- Love That Janker
-      "j_mf_impostor", -- Sus
-    }
-    for i = 1, #meme_jokers do
-      Cryptid.memepack[#Cryptid.memepack+1] = meme_jokers[i]
-    end
-  end
   if Cryptid.aliases then
     local aliases = {
       paul = "basepaul card",
@@ -842,6 +842,25 @@ if Cryptid then
       toner = "i sip toner soup",
       tonersoup = "i sip toner soup",
       isiptonersoup = "i sip toner soup",
+      junkmail = "junk mail",
+      flintandsteel = "flint and steel",
+      firestarter = "flint and steel",
+      peakcinema = "flint and steel",
+      gemstone = "gemstone joker",
+      missingtexture = "missing texture",
+      rot_cartomancer = "cartomancer!",
+      stonejokerjoker = "stonejoker joker",
+      sjj = "stonejoker joker",
+      tall = "tall joker",
+      teal = "teal joker",
+      yucky = "yucky rat", 
+      judas = "all i can't do",
+      brass = "brass joker",
+      complexitycreep = "complexity creep",
+      averagebalatromod = "complexity creep",
+      topten = "top 10 jokers from one through ten",
+      clickbait = "top 10 jokers from one through ten",
+      wide = "wide joker",
     }
     for k, v in pairs(aliases) do
       Cryptid.aliases[k] = v
@@ -909,6 +928,13 @@ function Game:update_round_eval(dt)
       -- end
     end
     G.bladedance_temp_ids = {}
+  end
+  if G.missingjoker_revert then
+    for _, joker in pairs(G.missingjoker_revert) do
+      joker:set_ability(G.P_CENTERS["j_mf_missingjoker"])
+      joker:juice_up()
+    end
+    G.missingjoker_revert = {}
   end
   if G.do_colour_end_of_round_stuff then
     colour_end_of_round_effects()
@@ -981,8 +1007,43 @@ local morefluffTabs = function() return {
 			}
 		end,
 	},
+  -- {
+  --   label = localize("mf_config_maj"),
+  --   chosen = true,
+	-- 	tab_definition_function = function()
+	-- 		local mynodes = {}
+	-- 		return {
+	-- 			n = G.UIT.ROOT,
+	-- 			config = {
+	-- 				emboss = 0.05,
+	-- 				minh = 6,
+	-- 				r = 0.1,
+	-- 				minw = 10,
+	-- 				align = "cm",
+	-- 				padding = 0.2,
+	-- 				colour = G.C.BLACK,
+	-- 			},
+	-- 			nodes = mynodes,
+	-- 		}
+	-- 	end,
+  -- },
 } end
 SMODS.current_mod.extra_tabs = morefluffTabs
+
+local mainmenuref2 = Game.main_menu
+Game.main_menu = function(change_context)
+  if Jen and Jen.fusions then
+    Jen.add_fusion(
+      'Fracture Triangle',3333,
+      "j_mf_shattered_prism",
+      'j_mf_triangle',
+      'j_jen_godsmarble'
+    )
+    --print("Fusions successfully applied!")
+  end
+  local ret = mainmenuref2(change_context)
+  return ret
+end
 
 -- -- thank you mr cryptid
 -- local g_main_menu = Game.main_menu
