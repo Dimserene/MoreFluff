@@ -60,7 +60,8 @@ local loc_stuff = {
           "Played {C:attention}3s{}",
           "give {C:chips}+#1#{} Chips",
           "and {C:mult}+#2#{} Mult",
-          "when scored"
+          "when scored",
+          art_credit("footlongdingledong"),
         }
       },
       j_mf_cba = {
@@ -163,7 +164,8 @@ local loc_stuff = {
           "Earn {C:money}$#1#{} at",
           "end of round",
           "{C:money}-$#2#{} given",
-          "per hand played"
+          "per hand played",
+          art_credit("gudusername_53951"),
         }
       },
       j_mf_hallofmirrors = {
@@ -228,7 +230,8 @@ local loc_stuff = {
         text = {
           "{X:mult,C:white} X#1# {} Mult",
           "{X:mult,C:white} -X#2# {} Mult per",
-          "round played"
+          "round played",
+          art_credit("gudusername_53951"),
         }
       },
       j_mf_luckycharm = {
@@ -337,6 +340,7 @@ local loc_stuff = {
           "Upgrade the level of",
           "each {C:attention}played hand{}",
           "for the next {C:attention}#1#{} hands",
+          art_credit("gudusername_53951"),
         },
       },
       j_mf_the_solo = {
@@ -864,7 +868,7 @@ local loc_stuff = {
       c_mf_rot_lovers = {
         name = "The Lovers!",
         text = {
-          "Enhances {C:attention}#1#{} select",
+          "Enhances {C:attention}#1#{}",
           "selected cards to",
           "{C:attention}#2#s"
         }
@@ -1324,6 +1328,13 @@ local loc_stuff = {
         text = {
           "Gives a free",
           "{C:dark_edition}Jumbo Modded Pack"
+        }
+      },
+      tag_mf_clutch = {
+        name = "Clutch Tag",
+        text = {
+          "{X:mult,C:white}X#1#{} Mult",
+          "for the next {C:attention}Blind"
         }
       }
     },

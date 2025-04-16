@@ -472,6 +472,32 @@ if mf_config["45 Degree Rotated Tarot Cards"] then
   init_rotarots()
 end
 
+-- clutch tag
+SMODS.Tag({
+  key = "clutch",
+  atlas = "mf_tags",
+  config = {
+    extra = 4
+  },
+  pos = { x = 1, y = 1 },
+  unlocked = true,
+  discovered = true,
+  loc_vars = function(self, info_queue)
+    return { vars = { self.config.extra } }
+  end,
+  apply = function(self, tag, context)
+    if context.type == "final_scoring_step" then
+      SMODS.calculate_effect({xmult=4}, tag)
+    end
+    if context.type == "eval" then
+      tag:yep("X", G.C.RED, function()
+        return true
+      end)
+      tag.triggered = true
+    end
+  end,
+})
+
 
 -- maybe another day
 
@@ -1107,9 +1133,15 @@ local morefluffTabs = function() return {
             {n=G.UIT.R, config={align = "tm", padding = 0}, nodes={
               {n=G.UIT.C, config={align = "tl", padding = 0.05, minw = 2.5}, nodes={
                 {n=G.UIT.R, config={align = "cl", padding = 0}, nodes={
-                  {n=G.UIT.T, config={text = 'Credits for Jokers are listed on the Jokers', scale = text_scale*0.5, colour = G.C.UI.WHITE, shadow = true}},
+                  {n=G.UIT.T, config={text = 'Jokers (individual credits are listed on Jokers):', scale = text_scale*0.7, colour = G.C.UI.WHITE, shadow = true}},
                 }},
               }},
+            }},
+            {n=G.UIT.R, config={align = "cm", padding = 0}, nodes={
+              {n=G.UIT.T, config={text = "gudusername_53951", scale = text_scale*0.4, colour = G.C.UI.WHITE, shadow = true}},
+            }},
+            {n=G.UIT.R, config={align = "cm", padding = 0}, nodes={
+              {n=G.UIT.T, config={text = "footlongdingledong", scale = text_scale*0.4, colour = G.C.UI.WHITE, shadow = true}},
             }},
           }}
         }}
