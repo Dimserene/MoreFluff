@@ -852,46 +852,48 @@ function init()
     end
   })
   
-  SMODS.Consumable({
-    object_type = "Consumable",
-    set = "Colour",
-    name = "col_Peach",
-    key = "peach",
-    pos = { x = 3, y = 4 },
-    config = {
-      val = 0,
-      partial_rounds = 0,
-      upgrade_rounds = 2,
-    },
-    cost = 4,
-    atlas = "mf_colours",
-    unlocked = true,
-    discovered = true,
-    display_size = { w = 71, h = 87 },
-    pixel_size = { w = 71, h = 87 },
-    can_use = function(self, card)
-      return true
-    end,
-    use = function(self, card, area, copier)
-      local card_type = "Rotarot"
-      local rng_seed = "peach"
-      for i = 1, card.ability.val do
-        G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
-          play_sound('timpani')
-          local n_card = create_card(card_type, G.consumeables, nil, nil, nil, nil, nil, rng_seed)
-          n_card:add_to_deck()
-          n_card:set_edition({negative = true}, true)
-          G.consumeables:emplace(n_card)
-          card:juice_up(0.3, 0.5)
-          return true end }))
+  if mf_config["45 Degree Rotated Tarot Cards"] then
+    SMODS.Consumable({
+      object_type = "Consumable",
+      set = "Colour",
+      name = "col_Peach",
+      key = "peach",
+      pos = { x = 3, y = 4 },
+      config = {
+        val = 0,
+        partial_rounds = 0,
+        upgrade_rounds = 2,
+      },
+      cost = 4,
+      atlas = "mf_colours",
+      unlocked = true,
+      discovered = true,
+      display_size = { w = 71, h = 87 },
+      pixel_size = { w = 71, h = 87 },
+      can_use = function(self, card)
+        return true
+      end,
+      use = function(self, card, area, copier)
+        local card_type = "Rotarot"
+        local rng_seed = "peach"
+        for i = 1, card.ability.val do
+          G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
+            play_sound('timpani')
+            local n_card = create_card(card_type, G.consumeables, nil, nil, nil, nil, nil, rng_seed)
+            n_card:add_to_deck()
+            n_card:set_edition({negative = true}, true)
+            G.consumeables:emplace(n_card)
+            card:juice_up(0.3, 0.5)
+            return true end }))
+        end
+        delay(0.6)
+      end,
+      loc_vars = function(self, info_queue, card)
+        local val, max = progressbar(card.ability.partial_rounds, card.ability.upgrade_rounds)
+        return { vars = {card.ability.val, val, max, card.ability.upgrade_rounds} }
       end
-      delay(0.6)
-    end,
-    loc_vars = function(self, info_queue, card)
-      local val, max = progressbar(card.ability.partial_rounds, card.ability.upgrade_rounds)
-      return { vars = {card.ability.val, val, max, card.ability.upgrade_rounds} }
-    end
-  })
+    })
+  end
   
   SMODS.Consumable({
     object_type = "Consumable",
@@ -1380,6 +1382,49 @@ function init()
       end
     end
     return G_UIDEF_use_and_sell_buttons_ref(card)
+  end
+
+  -- Joker Display
+
+  if JokerDisplay then
+    local cols = {
+      "c_mf_black",
+      "c_mf_deepblue",
+      "c_mf_crimson",
+      "c_mf_seaweed",
+      "c_mf_brown",
+      "c_mf_grey",
+      "c_mf_silver",
+      "c_mf_white",
+      "c_mf_red",
+      "c_mf_orange",
+      "c_mf_yellow",
+      "c_mf_green",
+      "c_mf_blue",
+      "c_mf_lilac",
+      "c_mf_pink",
+      "c_mf_peach",
+      "c_mf_purple",
+      "c_mf_moonstone",
+      "c_mf_gold",
+      "c_mf_ooffoo",
+      "c_mf_new_gold",
+    }
+
+    for _, col in pairs(cols) do
+      if JokerDisplay then
+        JokerDisplay.Definitions[col] = {
+          text = {
+            { ref_table = "card.ability", ref_value = "val", colour = G.C.DARK_EDITION  },
+            { text = " (", colour = G.C.UI.TEXT_INACTIVE },
+            { ref_table = "card.ability", ref_value = "partial_rounds", colour = G.C.UI.TEXT_INACTIVE },
+            { text = "/", colour = G.C.UI.TEXT_INACTIVE },
+            { ref_table = "card.ability", ref_value = "upgrade_rounds", colour = G.C.UI.TEXT_INACTIVE },
+            { text = ")", colour = G.C.UI.TEXT_INACTIVE },
+          }
+        }
+      end
+    end
   end
 end
 
