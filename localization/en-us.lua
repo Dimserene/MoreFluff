@@ -527,6 +527,36 @@ local loc_stuff = {
           art_credit("footlongdingledong"),
         }
       },
+      j_mf_farmmerge = {
+        name = "Joke Merge Valley",
+        text = {
+          "Discarding exactly {C:attention}3 cards",
+          "with the same rank {C:dark_edition}Merges",
+          "them all with the {C:attention}rightmost",
+          "discarded card"
+        },
+      },
+      j_mf_broomcloset = {
+        name = "The Broom Closet",
+        text = {
+          "{X:mult,C:white}X#1#{} Mult if no purchases",
+          "were made in the last {C:attention}Shop{}",
+          "{C:inactive}(Currently #2#)"
+        },
+      },
+      j_mf_unregisteredhypercam = { 
+        name = "Unregistered Hypercam 2",
+        text = {
+          "{X:dark_edition,C:white,s:1.4} ^^#1# {s:1.4} Mult",
+          "before scoring",
+        },
+      },
+      j_mf_blahaj = { 
+        name = "Blahaj",
+        text = {
+          "Swaps {C:chips}Chips{} and {C:mult}Mult{}"
+        },
+      },
       -- ORTALAB SWAPS
       j_mf_clintcondition = {
         name = "Clint Condition",
@@ -1687,6 +1717,8 @@ local loc_stuff = {
       b_take = "TAKE",
       k_death_caps = "DEATH",
       k_effect_added_ex = "Effect added!",
+      k_merged_ex = "Merged!",
+      k_swap_ex = "Swap!",
       
       k_rotarot = "45 Degree Rotated Tarot",
       b_rotarot_cards = "45 Degree Rotated Tarot Cards",
