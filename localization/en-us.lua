@@ -581,19 +581,57 @@ local loc_stuff = {
           "scored {C:attention}7{} cards {C:attention}#3#{} times",
         },
       },
-      j_mf_lessfluff = {
-        name = "Less Fluff",
-        text = {
-          "{X:mult,C:white} X#1# {} Mult",
-          "{C:dark_edition}-#2#{} Joker Slot"
-        },
-      },
       j_mf_snake = {
         name = "Snake",
         text = {
           "After {C:attention}play{} or {C:attention}discard{},",
           "always draw {C:attention}#1#{} cards"
         }
+      },
+      j_mf_bookmove = {
+        name = "Book Move",
+        text = {
+          "After {C:attention}#2#{} rounds,",
+          "sell this card to create",
+          "{C:attention}Hanging Chad{} and {C:attention}Photograph",
+          "{C:inactive}(Currently {C:attention}#1#{C:inactive}/#2#, must have room)"
+        },
+      },
+      j_mf_cueball = {
+        name = "Cue Ball",
+        text = {
+          "{C:green}#1# in #2#{} chance for each played",
+          "{C:attention}rankless card{} to create a",
+          "{C:rotarot}45 Degree Rotated Tarot{} card when scored",
+          "{C:inactive}(Must have room)"
+        },
+      },
+      j_mf_blunder = {
+        name = "Blunder",
+        text = {
+          "{X:mult,C:white} X#1# {} Mult",
+          "Forces one card",
+          "to be selected"
+        },
+      },
+      j_mf_brilliant = {
+        name = "Brilliant",
+        text = {
+          "If blind was beaten in",
+          "one hand, create a",
+          "random {C:spectral}Spectral{} card",
+          "{C:inactive}(Must have room)"
+        },
+      },
+      j_mf_lessfluff = {
+        name = "Less Fluff",
+        text = {
+          "Destroys all other {C:dark_edition}Modded{} {C:attention}Jokers{}",
+          "at the start of each {C:attention}Blind{}", 
+          "and gains {X:mult,C:white} X#2# {} Mult for each",
+          "{C:attention}Joker{} that was destroyed",
+          "{C:inactive}(Currently {X:red,C:white} X#1# {C:inactive})"
+        },
       },
       -- ORTALAB SWAPS
       j_mf_clintcondition = {

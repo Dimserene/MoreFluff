@@ -145,10 +145,13 @@ local joker_list = {
 
   -- other uncommons
   "badlegaldefence",
+  "blunder",
+  "brilliant",
   "broomcloset",
   "clipart",
   "coupon_catalogue",
   "css",
+  "cueball",
   "flintandsteel",
   "gemstonejoker",
   "globe",
@@ -178,6 +181,7 @@ local joker_list = {
   -- rare
   "allicantdo",
   "bloodpact",
+  "bookmove",
   "brass",
   "bowlingball",
   "cba",
@@ -186,7 +190,6 @@ local joker_list = {
   "hugejoker",
   "hyperjimbo",
   "jankman",
-  -- "lessfluff",
   "mashupalbum",
   "pixeljoker",
   "rainbowjoker",
@@ -194,6 +197,7 @@ local joker_list = {
   "the_solo",
   "top10",
   "widejoker",
+  "lessfluff",
   
   -- legendary!!
   "triangle",
