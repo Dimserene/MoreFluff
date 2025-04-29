@@ -1128,10 +1128,10 @@ local loc_stuff = {
       m_mf_marigold = {
         name = "Marigold Card",
         text = {
+          "Earn {C:money}$#1#{} at",
+          "end of round, plus",
           "{C:money}$#1#{} for each other",
-          "{C:attention}Marigold Card{} when",
-          "this card is held in",
-          "hand at end of round"
+          "{C:attention}Marigold Card{} in hand",
         }
       },
       m_mf_brass = {
@@ -1165,7 +1165,7 @@ local loc_stuff = {
       v_mf_paintroller = {
         name = "Paint Roller",
         text = {
-          "{C:green}1 in 2{} chance to add",
+          "{C:green}#1# in 2{} chance to add",
           "{C:attention}1{} round to {C:colourcard}Colour Cards{}",
           "when they gain a round"
         },
@@ -1833,7 +1833,7 @@ local loc_stuff = {
       mf_config_features = "Features",
 
       mf_config_progart = "Art Pack (requires restart)",
-      mf_config_disablecred = "Disble Art Credits on cards",
+      mf_config_disablecred = "Disable Art Credits on cards",
       mf_config_jokers = "Jokers",
       mf_config_music = "Music",
       mf_config_colour_cards = "Colour Cards",
