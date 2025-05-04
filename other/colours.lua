@@ -727,7 +727,6 @@ function init()
         G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
         play_sound('timpani')
         local n_card = create_card(nil,G.consumeables, nil, nil, nil, nil, 'j_oops', 'sup')
-        n_card.no_omega = true
         n_card:add_to_deck()
         n_card:set_edition({negative = true}, true)
         G.jokers:emplace(n_card)
@@ -1235,6 +1234,7 @@ function init()
       unlocked = true,
       discovered = true,
       hidden = true,
+      soul_rate = 0.03,
       display_size = { w = 71, h = 87 },
       pixel_size = { w = 71, h = 87 },
       can_use = function(self, card)
@@ -1250,6 +1250,51 @@ function init()
           else
             key = pseudorandom_element(Seals.rare_seal_spectrals, pseudoseed('sealspectrals'))
           end
+          G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
+            play_sound('timpani')
+            local n_card = create_card(card_type, G.consumeables, nil, nil, nil, nil, key, "royalblue")
+            n_card:add_to_deck()
+            n_card:set_edition({negative = true}, true)
+            G.consumeables:emplace(n_card)
+            card:juice_up(0.3, 0.5)
+            return true end }))
+        end
+        delay(0.6)
+      end,
+      loc_vars = function(self, info_queue, card)
+        local val, max = progressbar(card.ability.partial_rounds, card.ability.upgrade_rounds)
+        return { vars = {card.ability.val, val, max, card.ability.upgrade_rounds} }
+      end,
+      set_badges = function (self, card, badges)
+        SMODS.create_mod_badges({ mod = SMODS.find_mod("sillyseals")[1] }, badges)
+      end,
+    })
+    
+    SMODS.Consumable({
+      object_type = "Consumable",
+      set = "Colour",
+      name = "col_RespicePerPrisma",
+      key = "respiceperprisma",
+      pos = { x = 3, y = 7 },
+      config = {
+        val = 0,
+        partial_rounds = 0,
+        upgrade_rounds = 12,
+      },
+      cost = 4,
+      atlas = "mf_colours",
+      unlocked = true,
+      discovered = true,
+      hidden = true,
+      soul_rate = 0.0003,
+      display_size = { w = 71, h = 87 },
+      pixel_size = { w = 71, h = 87 },
+      can_use = function(self, card)
+        return true
+      end,
+      use = function(self, card, area, copier)
+        for i = 1, card.ability.val do
+          local key = "c_sillyseals_ringularity"
           G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
             play_sound('timpani')
             local n_card = create_card(card_type, G.consumeables, nil, nil, nil, nil, key, "royalblue")
@@ -1287,7 +1332,6 @@ function init()
       atlas = "mf_colours",
       unlocked = true,
       discovered = true,
-      hidden = true,
       display_size = { w = 71, h = 87 },
       pixel_size = { w = 71, h = 87 },
       can_use = function(self, card)
@@ -1332,7 +1376,6 @@ function init()
       atlas = "mf_colours",
       unlocked = true,
       discovered = true,
-      hidden = true,
       display_size = { w = 71, h = 87 },
       pixel_size = { w = 71, h = 87 },
       can_use = function(self, card)
@@ -1493,7 +1536,7 @@ function init()
     for i=1, n do
       local temp_pool = {}
       for k, v in pairs(G.consumeables.cards) do
-        if v.ability.set == 'Colour' then
+        if v.ability.set == 'Colour' or v.ability.set == "Shape" then
           table.insert(temp_pool, v)
         end
       end
@@ -1506,7 +1549,7 @@ function init()
   end
 
   function trigger_colour_end_of_round(_card)
-    if _card.ability.set == "Colour" then
+    if _card.ability.set == "Colour" or _card.ability.set == "Shape" then
 
       local base_count = 1
       if G.GAME.used_vouchers.v_mf_paintroller and pseudorandom('paintroller') < G.GAME.probabilities.normal/2 then
@@ -1605,7 +1648,7 @@ function init()
   local G_UIDEF_use_and_sell_buttons_ref = G.UIDEF.use_and_sell_buttons
   function G.UIDEF.use_and_sell_buttons(card)
     if (card.area == G.pack_cards and G.pack_cards) and card.ability.consumeable then --Add a use button
-      if card.ability.set == "Colour" then
+      if card.ability.set == "Colour" or card.ability.set == "Shape" then
         return {
           n = G.UIT.ROOT,
           config = { padding = -0.1, colour = G.C.CLEAR },
@@ -1675,6 +1718,7 @@ function init()
       "c_mf_wordlegreen",
       "c_mf_pastelpink",
       "c_mf_royalblue",
+      "c_mf_respiceperprisma",
       "c_mf_teal",
       "c_mf_blank",
       "c_mf_amber",
